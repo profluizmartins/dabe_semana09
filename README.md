@@ -1,58 +1,161 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# HelpDesk API — Documentação e Contratos Formais
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Repositório da aplicação de exemplo para a disciplina de **Desenvolvimento de API Back-End** da **UniEVANGÉLICA**, ministrada pelo **Prof. Me. Luiz Martins**.
 
-## About Laravel
+Este projeto demonstra a criação de uma API RESTful em **PHP / Laravel** arquitetada em camadas desacopladas (*Form Request*, *Controller*, *Service* e *Repository*), com geração automática de especificação **OpenAPI 3.0** e documentação interativa via **Dedoc Scramble**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Tecnologias e Ferramental
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Linguagem:** PHP 8.2+
+* **Framework:** Laravel 11+
+* **Gerenciador de Dependências:** Composer
+* **Documentação & Especificação OpenAPI:** [Dedoc Scramble](https://scramble.dedoc.co/)
+* **Padrão de Arquitetura:** Clean Architecture / Camadas (Request $\rightarrow$ Controller $\rightarrow$ Service $\rightarrow$ Repository)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📋 Pré-requisitos
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Antes de iniciar, certifique-se de possuir instalado no ambiente:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+* [Git](https://git-scm.com/)
+* [PHP 8.2 ou superior](https://www.php.net/) com extensões comuns habilitadas (`pdo`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `curl`)
+* [Composer](https://getcomposer.org/)
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## 🚀 Passo a Passo: Clonar e Rodar Localmente
 
+Siga as instruções sequenciais no terminal:
+
+### 1. Clonar o Repositório
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/profluizmartins/dabe_semana09.git
+cd dabe_semana09
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Instalar as Dependências do Projeto
+Baixe as dependências do framework e do Scramble via Composer:
+```bash
+composer install
+```
 
-## Contributing
+### 3. Configurar as Variáveis de Ambiente
+Copie o arquivo de exemplo de ambiente `.env.example` para `.env`:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* **Linux / macOS / Git Bash:**
+  ```bash
+  cp .env.example .env
+  ```
+* **Windows (Prompt / PowerShell):**
+  ```powershell
+  copy .env.example .env
+  ```
 
-## Code of Conduct
+> **Atenção:** Como o laboratório utiliza persistência em memória e dispensa banco de dados, certifique-se de que no arquivo `.env` as variáveis de sessão e cache estejam apontando para arquivos:
+> ```env
+> SESSION_DRIVER=file
+> CACHE_STORE=file
+> ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Gerar a Chave da Aplicação (APP_KEY)
+```bash
+php artisan key:generate
+```
 
-## Security Vulnerabilities
+### 5. Iniciar o Servidor de Desenvolvimento
+```bash
+php artisan serve
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+O terminal exibirá a confirmação de inicialização:
+```text
+   INFO  Server running on [http://127.0.0.1:8000].
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 📖 Acessando a Documentação da API
+
+Com o servidor em execução, abra o navegador e utilize as URLs abaixo:
+
+* **Interface Visual Interativa (Swagger/Scalar UI):**
+  [http://127.0.0.1:8000/docs/api](http://127.0.0.1:8000/docs/api)
+* **Especificação OpenAPI Raw (JSON):**
+  [http://127.0.0.1:8000/docs/api.json](http://127.0.0.1:8000/docs/api.json)
+
+---
+
+## 🧪 Roteiro de Teste dos Endpoints
+
+Você pode testar as rotas diretamente pelo botão **"Try it out"** na documentação interativa ou via ferramentas como Postman, Insomnia ou cURL:
+
+### 1. Listar Chamados
+* **Método:** `GET`
+* **URL:** `http://127.0.0.1:8000/api/v1/chamados`
+* **Status Esperado:** `200 OK`
+
+### 2. Abrir Novo Chamado (Sucesso)
+* **Método:** `POST`
+* **URL:** `http://127.0.0.1:8000/api/v1/chamados`
+* **Headers:** `Content-Type: application/json`
+* **Payload:**
+  ```json
+  {
+    "titulo": "Falha no switch principal do bloco B",
+    "descricao": "Portas 1 a 12 pararam de responder após surto elétrico.",
+    "prioridade": "ALTA",
+    "categoria_id": 2
+  }
+  ```
+* **Status Esperado:** `201 Created`
+
+### 3. Teste de Violação de Contrato (Erro de Validação)
+* **Método:** `POST`
+* **URL:** `http://127.0.0.1:8000/api/v1/chamados`
+* **Headers:** `Content-Type: application/json`
+* **Payload:**
+  ```json
+  {
+    "titulo": "Erro",
+    "descricao": "Teste com título curto e prioridade inválida.",
+    "prioridade": "URGENTE",
+    "categoria_id": 2
+  }
+  ```
+* **Status Esperado:** `422 Unprocessable Entity` (Observe o detalhamento formal dos erros retornado pelo Laravel).
+
+### 4. Consultar Chamado Específico
+* **Método:** `GET`
+* **URL:** `http://127.0.0.1:8000/api/v1/chamados/1`
+* **Status Esperado:** `200 OK`
+* *(Caso informe um ID inexistente, como `/999`, o retorno esperado será `404 Not Found`).*
+
+---
+
+## 🏛️ Estrutura Arquitetural do Código
+
+```text
+app/
+├── Http/
+│   ├── Controllers/
+│   │   └── ChamadoController.php   # Entrada HTTP, docblocks semânticos e respostas
+│   └── Requests/
+│       └── CriarChamadoRequest.php # Validação automática e definição do schema OpenAPI
+├── Repositories/
+│   └── ChamadoRepository.php       # Isolamento da camada de dados / persistência
+└── Services/
+    └── ChamadoService.php          # Lógica de negócio pura isolada do protocolo HTTP
+routes/
+└── api.php                         # Mapeamento e versionamento semântico (/v1/...)
+```
+
+---
+
+## 👨‍🏫 Docente Responsável
+
+* **Prof. Me. Luiz Martins**
+* **Instituição:** Universidade Evangélica de Goiás (UniEVANGÉLICA)
+* **Disciplina:** Desenvolvimento de API Back-End
